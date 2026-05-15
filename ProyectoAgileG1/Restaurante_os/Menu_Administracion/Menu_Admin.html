@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Administración del Menú - RestaurantOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-surface": "#191c1d", "on-tertiary-container": "#f7fff1", "tertiary-fixed-dim": "#34e44f", "on-primary-container": "#fffbff", "on-tertiary-fixed-variant": "#005313", secondary: "#904d00", "on-secondary-fixed": "#2f1500", "surface-tint": "#9a4600", surface: "#f8f9fa", "surface-bright": "#f8f9fa", "error-container": "#ffdad6", "tertiary-container": "#008724", "outline-variant": "#ddc1b3", "on-secondary-container": "#603100", background: "#f8f9fa", "on-primary-fixed": "#321200", "primary-fixed-dim": "#ffb68d", "secondary-fixed": "#ffdcc3", "on-error": "#ffffff", "on-tertiary": "#ffffff", "on-secondary": "#ffffff", "on-tertiary-fixed": "#002204", tertiary: "#006b1b", "surface-container": "#edeeef", "on-primary-fixed-variant": "#763400", outline: "#8a7266", "inverse-surface": "#2e3132", "surface-container-low": "#f3f4f5", primary: "#974400", "primary-fixed": "#ffdbc9", "secondary-fixed-dim": "#ffb77d", "inverse-primary": "#ffb68d", "surface-dim": "#d9dadb", "on-secondary-fixed-variant": "#6e3900", "on-error-container": "#93000a", "surface-container-highest": "#e1e3e4", error: "#ba1a1a", "secondary-container": "#fd8b00", "surface-container-high": "#e7e8e9", "surface-container-lowest": "#ffffff", "inverse-on-surface": "#f0f1f2", "surface-variant": "#e1e3e4", "on-primary": "#ffffff", "tertiary-fixed": "#70ff76", "on-background": "#191c1d", "on-surface-variant": "#564338", "primary-container": "#bb5808"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {"stack-sm": "8px", "stack-lg": "32px", "touch-target-min": "48px", gutter: "16px", "stack-md": "16px", "container-padding": "24px", unit: "8px"}, fontFamily: {"display-lg": ["Inter"], "body-md": ["Inter"], "body-lg": ["Inter"], "headline-md": ["Inter"], "label-lg": ["Inter"], "label-md": ["Inter"], "headline-lg": ["Inter"], headline: ["Inter"], display: ["Inter"], body: ["Inter"], label: ["Inter"]}, fontSize: {"display-lg": ["40px", {lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "600"}], "label-lg": ["14px", {lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "600"}], "label-md": ["12px", {lineHeight: "16px", fontWeight: "500"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600"}]}}}};</script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+            .material-symbols-outlined.fill {
+                font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- Top Navigation (Mobile Only) -->
+<nav class="md:hidden bg-surface dark:bg-on-surface text-primary dark:text-primary-fixed-dim font-headline-md text-headline-md font-semibold docked full-width top-0 border-b border-outline-variant bg-surface-bright shadow-sm flex justify-between items-center px-container-padding h-touch-target-min w-full max-w-7xl mx-auto z-40 fixed">
+<div class="flex items-center gap-2">
+<span class="text-headline-lg font-headline-lg font-bold text-primary dark:text-primary-fixed">RestaurantOS</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high transition-all duration-200 scale-95 active:opacity-80 p-2 rounded-full flex items-center justify-center w-touch-target-min h-touch-target-min">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar (Desktop Only) -->
+<aside class="hidden md:flex bg-surface-container-low dark:bg-inverse-surface text-primary dark:text-tertiary-fixed-dim font-label-lg text-label-lg font-headline-md text-headline-md text-primary docked full-height left-0 w-64 bg-surface-container-low shadow-md flex-col h-screen py-stack-lg px-gutter fixed border-r border-outline-variant/30">
+<!-- Brand/Header -->
+<div class="flex flex-col mb-stack-lg pb-stack-md border-b border-outline-variant/30">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary shadow-sm overflow-hidden">
+<img alt="Logo de la Cevichería" class="w-full h-full object-cover" data-alt="A close up, vibrant logo of a modern cevicheria featuring abstract sea waves and a stylized shrimp in bold orange and deep blue colors. High contrast, professional restaurant branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6PDuoi67xJ1gYuwSziedASuITiDPTl9sTSdOhJliWJGLeNCNMW0naX_TNslNytua32Y-M-zYhqVX6FHmJSmF9vbR-oxxCvIth-2YjvTj3ksYsb33yBDeclzxn-uSQQSdRPKaFXHV_oQ07QLTcg5595l6HHl9-G-Q824qea3q79C57HT2xlcI0JrteZ7B3bRw5zirPdyldQ4qSMLBYGxnFyy1tLzRBXtuXCufMSu1ObVLaN3rLy7acidp2ExvsH0GOVt2RivoBCOHD"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface leading-tight">Administración</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">RestaurantOS Pro</p>
+</div>
+</div>
+<button class="mt-4 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg h-touch-target-min flex items-center justify-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined">add</span>
+                Nuevo Reporte
+            </button>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 flex flex-col gap-1 overflow-y-auto">
+<a class="text-on-surface-variant hover:bg-surface-container-highest rounded-lg hover:bg-surface-container-high transition-all duration-300 ease-in-out flex items-center gap-3 px-3 h-touch-target-min" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Panel Control
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-container-highest rounded-lg hover:bg-surface-container-high transition-all duration-300 ease-in-out flex items-center gap-3 px-3 h-touch-target-min" href="#">
+<span class="material-symbols-outlined">payments</span>
+                Ventas
+            </a>
+<a class="bg-primary-container text-on-primary-container rounded-lg font-bold hover:bg-surface-container-high transition-all duration-300 ease-in-out flex items-center gap-3 px-3 h-touch-target-min shadow-sm" href="#">
+<span class="material-symbols-outlined fill">restaurant_menu</span>
+                Menú
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-container-highest rounded-lg hover:bg-surface-container-high transition-all duration-300 ease-in-out flex items-center gap-3 px-3 h-touch-target-min" href="#">
+<span class="material-symbols-outlined">group</span>
+                Personal
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-container-highest rounded-lg hover:bg-surface-container-high transition-all duration-300 ease-in-out flex items-center gap-3 px-3 h-touch-target-min" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Reportes
+            </a>
+</nav>
+<!-- Footer Links -->
+<div class="mt-auto pt-stack-md border-t border-outline-variant/30 flex flex-col gap-1">
+<a class="text-on-surface-variant hover:bg-surface-container-highest rounded-lg hover:bg-surface-container-high transition-all duration-300 ease-in-out flex items-center gap-3 px-3 h-touch-target-min" href="#">
+<span class="material-symbols-outlined">help</span>
+                Ayuda
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-container-highest rounded-lg hover:bg-surface-container-high transition-all duration-300 ease-in-out flex items-center gap-3 px-3 h-touch-target-min" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Ajustes
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 pt-touch-target-min md:pt-0 min-h-screen bg-surface flex flex-col max-w-7xl mx-auto w-full">
+<!-- Page Header -->
+<header class="bg-surface-container-lowest px-container-padding py-stack-md border-b border-outline-variant/30 sticky top-0 md:top-0 z-30 shadow-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 max-w-7xl mx-auto w-full">
+<div>
+<nav aria-label="Breadcrumb" class="flex text-on-surface-variant font-label-md text-label-md mb-1">
+<ol class="inline-flex items-center space-x-1 md:space-x-2">
+<li class="inline-flex items-center">
+<a class="hover:text-primary transition-colors" href="#">Administración</a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[16px] mx-1">chevron_right</span>
+<span class="text-on-surface font-semibold">Menú</span>
+</div>
+</li>
+</ol>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Gestión de Menú</h2>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative w-full sm:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full h-touch-target-min pl-10 pr-4 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary font-body-md text-on-surface placeholder:text-on-surface-variant/70 shadow-inner" placeholder="Buscar plato..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary h-touch-target-min px-6 rounded-lg font-label-lg text-label-lg font-semibold hover:bg-primary/90 transition-colors shadow-sm flex items-center gap-2 whitespace-nowrap shrink-0">
+<span class="material-symbols-outlined">add</span>
+<span class="hidden sm:inline">Agregar plato</span>
+</button>
+</div>
+</header>
+<!-- Two-Panel Layout -->
+<div class="flex-1 flex flex-col lg:flex-row overflow-hidden max-w-7xl mx-auto w-full">
+<!-- Left Panel: Categories -->
+<section class="w-full lg:w-80 bg-surface-container-lowest border-r border-outline-variant/30 flex flex-col h-auto lg:h-[calc(100vh-100px)] overflow-y-auto">
+<div class="p-container-padding pb-2 flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Categorías</h3>
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-1 rounded-md font-label-sm text-[11px] font-bold">4</span>
+</div>
+<div class="px-container-padding mb-4">
+<button class="w-full border-2 border-dashed border-outline text-on-surface-variant hover:border-primary hover:text-primary hover:bg-surface-container-low transition-colors rounded-lg h-touch-target-min flex items-center justify-center gap-2 font-label-lg font-semibold">
+<span class="material-symbols-outlined">add</span>
+                        Nueva categoría
+                    </button>
+</div>
+<nav class="flex-1 px-stack-md pb-container-padding flex flex-col gap-2">
+<!-- Active Category -->
+<div class="group bg-surface-container-highest border border-outline-variant/50 rounded-xl p-3 cursor-pointer shadow-sm flex items-center justify-between transition-all">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined">tapas</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-bold">Entradas</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">12 platos</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">more_vert</span>
+</div>
+<!-- Inactive Categories -->
+<div class="group bg-transparent hover:bg-surface-container-low border border-transparent hover:border-outline-variant/30 rounded-xl p-3 cursor-pointer transition-all flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant group-hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">dinner_dining</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface-variant group-hover:text-on-surface transition-colors">Platos de fondo</h4>
+<p class="font-label-md text-label-md text-on-surface-variant/70">24 platos</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">more_vert</span>
+</div>
+<div class="group bg-transparent hover:bg-surface-container-low border border-transparent hover:border-outline-variant/30 rounded-xl p-3 cursor-pointer transition-all flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant group-hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">cake</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface-variant group-hover:text-on-surface transition-colors">Postres</h4>
+<p class="font-label-md text-label-md text-on-surface-variant/70">8 platos</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">more_vert</span>
+</div>
+<div class="group bg-transparent hover:bg-surface-container-low border border-transparent hover:border-outline-variant/30 rounded-xl p-3 cursor-pointer transition-all flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant group-hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">local_bar</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface-variant group-hover:text-on-surface transition-colors">Bebidas</h4>
+<p class="font-label-md text-label-md text-on-surface-variant/70">18 items</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">more_vert</span>
+</div>
+</nav>
+</section>
+<!-- Right Panel: Dishes List -->
+<section class="flex-1 bg-surface p-container-padding overflow-y-auto h-auto lg:h-[calc(100vh-100px)]">
+<div class="flex justify-between items-end mb-stack-lg">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Entradas</h3>
+<p class="font-body-md text-on-surface-variant">Gestiona los platos de esta categoría.</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="h-touch-target-min w-touch-target-min rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors bg-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="h-touch-target-min w-touch-target-min rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors bg-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined">sort</span>
+</button>
+</div>
+</div>
+<!-- Bento-style Grid for Dishes -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-stack-md">
+<!-- Dish Card: Disponible (Green) -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant/50 p-4 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<!-- Status Indicator Tab -->
+<div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+<div class="absolute top-0 right-0 w-0 h-0 border-t-[32px] border-r-[32px] border-l-[32px] border-b-[32px] border-t-transparent border-l-transparent border-b-transparent border-r-[#10b981] opacity-20"></div>
+</div>
+<div class="flex gap-4">
+<div class="w-24 h-24 rounded-lg bg-surface-container overflow-hidden shrink-0 shadow-inner">
+<img alt="Ceviche Clásico" class="w-full h-full object-cover" data-alt="A top-down view of a fresh classic Peruvian ceviche served in a white bowl. The dish features raw fish marinated in citrus, topped with red onions and cilantro, presented on a minimalist wooden table in a bright, modern setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF7PqvdRw4JY1jdH5A2fqWyuHBBBFuAu1LqzxuG3tm680fFO4TqxzrQTvV9wCReZuCHTCZATlYYLjqLiuOTYndRuv4bZeJSSSPomn4o_Y7iFiEY65Erl59vJMwsbpm86cvFaDkCqEpLoyUz0avSEhasLgMRg_gFRwD7_om8njjz5pTbT9VSKpFiK6PeyaAwHKK5Xr61foMyoC09WeTbHxsROnUA1bgYUa6D8LRz1rzqz8TFmJAzxP4PgnZXPBdYe734Bo0dbTTKerA"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h4 class="font-headline-md text-[18px] font-bold text-on-surface leading-tight mb-1">Ceviche Clásico</h4>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<p class="font-body-md text-on-surface-variant text-sm line-clamp-2">Pescado fresco del día marinado en leche de tigre con ají limo y cilantro.</p>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-headline-md text-[20px] font-bold text-primary">S/ 35.00</span>
+<div class="bg-[#10b981]/10 text-[#047857] px-2 py-1 rounded border border-[#10b981]/20 flex items-center gap-1 font-label-md font-bold">
+<span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+                                        Disponible
+                                    </div>
+</div>
+</div>
+</div>
+<!-- Actions Overlay (on hover) -->
+<div class="absolute bottom-0 left-0 w-full p-2 bg-surface-container-lowest/90 backdrop-blur-sm border-t border-outline-variant/30 translate-y-full group-hover:translate-y-0 transition-transform flex gap-2 justify-end">
+<button class="h-10 px-4 rounded-md text-on-surface-variant hover:bg-surface-container font-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span> Editar
+                            </button>
+<button class="h-10 px-4 rounded-md text-error hover:bg-error-container font-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</article>
+<!-- Dish Card: Agotado (Red) -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant/50 p-4 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<!-- Status Indicator Tab -->
+<div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+<div class="absolute top-0 right-0 w-0 h-0 border-t-[32px] border-r-[32px] border-l-[32px] border-b-[32px] border-t-transparent border-l-transparent border-b-transparent border-error opacity-10"></div>
+</div>
+<div class="flex gap-4">
+<div class="w-24 h-24 rounded-lg bg-surface-container overflow-hidden shrink-0 shadow-inner relative">
+<img alt="Tiradito al Ají Amarillo" class="w-full h-full object-cover grayscale opacity-60" data-alt="Thinly sliced raw fish arranged beautifully on a plate, covered in a vibrant yellow aji sauce. High-end culinary presentation, bright lighting, soft shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwfo48y_TkI8P7wZmSnPv0vLJnAgF4NbXiX6BdfwrM2ppR_-t9d3Y-ohknPnwq8V9Kp56yfEt05HSGLm8QYDTgQwNQ8saQEPCBrV_EHzGz7_nDw-T53Gs5ecXi6aTgFQ9wLUAUCah8It7fbcHJqbQXnkyA28b0p3QmwEF-ttNRn598QBU8tSubftBKlx6h0Vnt-HUeXUnG7XCkc7iXP0KT-Rfi343AEzqZB_2qrbxThX82IwST-oAvmrkosrYQeJ8qKEdeJPvnvQKK"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h4 class="font-headline-md text-[18px] font-bold text-on-surface leading-tight mb-1">Tiradito al Ají</h4>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<p class="font-body-md text-on-surface-variant text-sm line-clamp-2">Láminas de pescado bañadas en crema de ají amarillo peruano.</p>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-headline-md text-[20px] font-bold text-on-surface-variant opacity-70">S/ 38.00</span>
+<div class="bg-error/10 text-error px-2 py-1 rounded border border-error/20 flex items-center gap-1 font-label-md font-bold">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+                                        Agotado
+                                    </div>
+</div>
+</div>
+</div>
+<!-- Actions Overlay -->
+<div class="absolute bottom-0 left-0 w-full p-2 bg-surface-container-lowest/90 backdrop-blur-sm border-t border-outline-variant/30 translate-y-full group-hover:translate-y-0 transition-transform flex gap-2 justify-end">
+<button class="h-10 px-4 rounded-md text-on-surface-variant hover:bg-surface-container font-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span> Editar
+                            </button>
+<button class="h-10 px-4 rounded-md text-error hover:bg-error-container font-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</article>
+<!-- Dish Card: Sin stock (Amber) -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant/50 p-4 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<!-- Status Indicator Tab -->
+<div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+<div class="absolute top-0 right-0 w-0 h-0 border-t-[32px] border-r-[32px] border-l-[32px] border-b-[32px] border-t-transparent border-l-transparent border-b-transparent border-error opacity-10"></div>
+</div>
+<div class="flex gap-4">
+<div class="w-24 h-24 rounded-lg bg-surface-container overflow-hidden shrink-0 shadow-inner">
+<img alt="Causa Limeña" class="w-full h-full object-cover grayscale opacity-60" data-alt="A delicate presentation of a Causa Limeña, a Peruvian potato dish layered with avocado and chicken, garnished with a single olive and microgreens. Soft, warm overhead lighting highlighting textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmeFDrQUw3aePmZzQTv1TiXGDZ62sinp_JW6XhT6WVux6fI2ykIoafT5oEoEd7yjXIIGoIKcNwqVDOt6lXtoUu_UkscZflYSLl4OJTdXR4LU0NcO5kJ3ZK4YiCKUsY7UT3V6TtOcfPqH4iEXqZop6RExhdVI1JAzgQCRymDq0qlFSrSiOhEoeOk_PKCtO9wUIkWCAyO2bGsIxsLRVj-aMY98VRem3O34Qd_a-5N-lg4QeT0vxgCG_5i36S23Y7h2OtzxS9y5rJkuDX"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h4 class="font-headline-md text-[18px] font-bold text-on-surface leading-tight mb-1">Causa Limeña</h4>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<p class="font-body-md text-on-surface-variant text-sm line-clamp-2">Masa de papa amarilla rellena de pollo, mayonesa y palta.</p>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-headline-md text-[20px] font-bold opacity-70">S/ 25.00</span>
+<div class="bg-error/10 text-error px-2 py-1 rounded border border-error/20 flex items-center gap-1 font-label-md font-bold"><span class="w-2 h-2 rounded-full bg-error"></span>Agotado</div>
+</div>
+</div>
+</div>
+<!-- Actions Overlay -->
+<div class="absolute bottom-0 left-0 w-full p-2 bg-surface-container-lowest/90 backdrop-blur-sm border-t border-outline-variant/30 translate-y-full group-hover:translate-y-0 transition-transform flex gap-2 justify-end">
+<button class="h-10 px-4 rounded-md text-on-surface-variant hover:bg-surface-container font-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span> Editar
+                            </button>
+<button class="h-10 px-4 rounded-md text-error hover:bg-error-container font-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</article>
+<!-- Dish Card: Disponible (Green) -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant/50 p-4 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<!-- Status Indicator Tab -->
+<div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+<div class="absolute top-0 right-0 w-0 h-0 border-t-[32px] border-r-[32px] border-l-[32px] border-b-[32px] border-t-transparent border-l-transparent border-b-transparent border-r-[#10b981] opacity-20"></div>
+</div>
+<div class="flex gap-4">
+<div class="w-24 h-24 rounded-lg bg-surface-container overflow-hidden shrink-0 shadow-inner">
+<img alt="Choritos a la Chalaca" class="w-full h-full object-cover" data-alt="Several mussels on the half shell topped with a finely diced salsa of red onions, corn, and tomatoes. Served on a rustic plate. High-contrast, fresh culinary photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbBc_lsJRIRvJT-ibQV9sQ8vMgw2ZMRS1vfTqNs7hyJ7SGuZFILfAkP9CVmmCJoOfvwCQLVctIJP_uw4zbyd-f6dOOJcb5vjH9cH-w6HkY-BYtsTCoxfaqitnS6Hu8C59t420qUxAkxHaPNZkPJoyG0MmbWoa72iTkc9yrisg0AX3WPraxF3Jj7mECQOBy7xK_hFy3hFdh7ws3IN-Z-LQoyQXVnvlUIE8Ap43Dq0qU3AhAqAOLiZtXCr57IQ6lG6qR1t3xPqTaMAEX"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h4 class="font-headline-md text-[18px] font-bold text-on-surface leading-tight mb-1">Choritos Chalaca</h4>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<p class="font-body-md text-on-surface-variant text-sm line-clamp-2">Mejillones cubiertos con una sarsa criolla fresca de cebolla, tomate y choclo.</p>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-headline-md text-[20px] font-bold text-primary">S/ 22.00</span>
+<div class="bg-[#10b981]/10 text-[#047857] px-2 py-1 rounded border border-[#10b981]/20 flex items-center gap-1 font-label-md font-bold">
+<span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+                                        Disponible
+                                    </div>
+</div>
+</div>
+</div>
+<!-- Actions Overlay -->
+<div class="absolute bottom-0 left-0 w-full p-2 bg-surface-container-lowest/90 backdrop-blur-sm border-t border-outline-variant/30 translate-y-full group-hover:translate-y-0 transition-transform flex gap-2 justify-end">
+<button class="h-10 px-4 rounded-md text-on-surface-variant hover:bg-surface-container font-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span> Editar
+                            </button>
+<button class="h-10 px-4 rounded-md text-error hover:bg-error-container font-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</article>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface-container-highest dark:bg-on-surface text-primary dark:text-primary-fixed font-label-md text-label-md fixed bottom-0 w-full z-50 rounded-t-xl shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] shadow-lg fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 border-t border-outline-variant/30">
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container active:scale-90 transition-transform w-16">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="mt-1 text-[10px]">Mesas</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl p-2 hover:bg-surface-container active:scale-90 transition-transform w-16 shadow-sm">
+<span class="material-symbols-outlined fill">restaurant_menu</span>
+<span class="mt-1 text-[10px] font-bold">Menú</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container active:scale-90 transition-transform w-16">
+<span class="material-symbols-outlined">outdoor_grill</span>
+<span class="mt-1 text-[10px]">Cocina</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container active:scale-90 transition-transform w-16">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="mt-1 text-[10px]">Perfil</span>
+</button>
+</nav>
+</body></html>

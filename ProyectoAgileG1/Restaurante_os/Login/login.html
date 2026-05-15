@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="es"><head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>RestaurantOS - Iniciar sesión</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-surface": "#191c1d", "on-tertiary-container": "#f7fff1", "tertiary-fixed-dim": "#34e44f", "on-primary-container": "#fffbff", "on-tertiary-fixed-variant": "#005313", secondary: "#904d00", "on-secondary-fixed": "#2f1500", "surface-tint": "#9a4600", surface: "#f8f9fa", "surface-bright": "#f8f9fa", "error-container": "#ffdad6", "tertiary-container": "#008724", "outline-variant": "#ddc1b3", "on-secondary-container": "#603100", background: "#f8f9fa", "on-primary-fixed": "#321200", "primary-fixed-dim": "#ffb68d", "secondary-fixed": "#ffdcc3", "on-error": "#ffffff", "on-tertiary": "#ffffff", "on-secondary": "#ffffff", "on-tertiary-fixed": "#002204", tertiary: "#006b1b", "surface-container": "#edeeef", "on-primary-fixed-variant": "#763400", outline: "#8a7266", "inverse-surface": "#2e3132", "surface-container-low": "#f3f4f5", primary: "#974400", "primary-fixed": "#ffdbc9", "secondary-fixed-dim": "#ffb77d", "inverse-primary": "#ffb68d", "surface-dim": "#d9dadb", "on-secondary-fixed-variant": "#6e3900", "on-error-container": "#93000a", "surface-container-highest": "#e1e3e4", error: "#ba1a1a", "secondary-container": "#fd8b00", "surface-container-high": "#e7e8e9", "surface-container-lowest": "#ffffff", "inverse-on-surface": "#f0f1f2", "surface-variant": "#e1e3e4", "on-primary": "#ffffff", "tertiary-fixed": "#70ff76", "on-background": "#191c1d", "on-surface-variant": "#564338", "primary-container": "#bb5808"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {"stack-sm": "8px", "stack-lg": "32px", "touch-target-min": "48px", gutter: "16px", "stack-md": "16px", "container-padding": "24px", unit: "8px"}, fontFamily: {"display-lg": ["Inter"], "body-md": ["Inter"], "body-lg": ["Inter"], "headline-md": ["Inter"], "label-lg": ["Inter"], "label-md": ["Inter"], "headline-lg": ["Inter"], headline: ["Inter"], display: ["Inter"], body: ["Inter"], label: ["Inter"]}, fontSize: {"display-lg": ["40px", {lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "600"}], "label-lg": ["14px", {lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "600"}], "label-md": ["12px", {lineHeight: "16px", fontWeight: "500"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600"}]}}}};</script>
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+            .material-symbols-outlined.filled {
+                font-variation-settings: 'FILL' 1;
+            }
+        </style>
+    <style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style><style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style><style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style></head>
+    <body class="bg-background min-h-screen flex items-center justify-center p-container-padding font-body-md text-on-surface">
+    <main class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-lg p-stack-lg border border-surface-variant flex flex-col gap-stack-lg relative z-10">
+    <div class="flex flex-col items-center justify-center gap-stack-sm text-center">
+    <div class="w-24 h-24 mb-4 relative">
+    <img alt="RestaurantOS Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtxuWFE0nOVcAFOHXCcbQezymc7g14dQr1S6JktSxMAYIsIyZwovlgFthBClK-oL0v4RNCg7k3cHa85q3o2E-GFvTU0ibsEPngM8JwZluqSUbGQIbqZQNBV8VYLzBEbpvxSjrurTjLrbrWgUFtc6lI-_mrZUz6DRJnk3H0l30VjUvg5TiUqufVVCJDaLXodq4KvSmesQwr1SfhVG-nG6wMf-TrOBZ56QBcMp6y2z_YnVpWRuJ_gjXg6YUAuepPxdUHiuY7dlpY3zXe">
+    </div>
+    <h1 class="font-headline-lg text-headline-lg text-on-surface">RestaurantOS</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant">Acceso al sistema de gestión</p>
+    </div>
+    <form class="flex flex-col gap-stack-md w-full">
+    <div class="flex flex-col gap-stack-sm">
+    <label class="font-label-md text-label-md text-on-surface" for="usuario">Usuario</label>
+    <div class="relative">
+    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">person</span>
+    <input class="w-full h-touch-target-min pl-10 pr-4 bg-surface rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors font-body-md text-body-md text-on-surface placeholder:text-outline" id="usuario" name="usuario" placeholder="Ej: admin_salon" type="text">
+    </div>
+    </div>
+    <div class="flex flex-col gap-stack-sm">
+    <div class="flex justify-between items-center">
+    <label class="font-label-md text-label-md text-on-surface" for="password">Contraseña</label>
+    </div>
+    <div class="relative">
+    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">lock</span>
+    <input class="w-full h-touch-target-min pl-10 pr-12 bg-surface rounded-lg border border-error focus:border-error focus:ring-1 focus:ring-error outline-none transition-colors font-body-md text-body-md text-on-surface placeholder:text-outline" id="password" name="password" placeholder="Ingresa tu contraseña" type="password" value="contrasena_erronea">
+    <button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center h-full" type="button">
+    <span class="material-symbols-outlined">visibility_off</span>
+    </button>
+    </div>
+    <div class="flex items-center gap-2 mt-1 text-error fill-error">
+    <span class="material-symbols-outlined text-[16px]">error</span>
+    <p class="font-label-md text-label-md">Credenciales incorrectas</p>
+    </div>
+    </div>
+    <button class="w-full h-touch-target-min mt-stack-sm bg-primary text-on-primary font-label-lg text-label-lg rounded-lg hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm flex items-center justify-center gap-2" type="submit">
+                    Iniciar sesión
+                    <span class="material-symbols-outlined text-[18px]">login</span>
+    </button>
+    <div class="text-center mt-4 flex flex-col gap-2">
+    <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#" style="color: rgb(210, 105, 30);">¿Olvidaste tu contraseña?</a>
+    <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Recuperar credenciales</a>
+    </div>
+    </form>
+    <div class="mt-auto pt-stack-md border-t border-surface-variant text-center">
+    <div class="flex items-center justify-center gap-2 text-on-surface-variant bg-surface-container-low py-2 px-4 rounded-full inline-flex">
+    <span class="material-symbols-outlined text-[16px]">timer</span>
+    <p class="font-label-md text-label-md">Sesión expira tras 30 min de inactividad</p>
+    </div>
+    </div>
+    </main>
+    
+    
+    </body></html>

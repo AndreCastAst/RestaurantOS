@@ -1,0 +1,330 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Panel de Cocina - RestaurantOS</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-surface": "#191c1d", "on-tertiary-container": "#f7fff1", "tertiary-fixed-dim": "#34e44f", "on-primary-container": "#fffbff", "on-tertiary-fixed-variant": "#005313", secondary: "#904d00", "on-secondary-fixed": "#2f1500", "surface-tint": "#9a4600", surface: "#f8f9fa", "surface-bright": "#f8f9fa", "error-container": "#ffdad6", "tertiary-container": "#008724", "outline-variant": "#ddc1b3", "on-secondary-container": "#603100", background: "#f8f9fa", "on-primary-fixed": "#321200", "primary-fixed-dim": "#ffb68d", "secondary-fixed": "#ffdcc3", "on-error": "#ffffff", "on-tertiary": "#ffffff", "on-secondary": "#ffffff", "on-tertiary-fixed": "#002204", tertiary: "#006b1b", "surface-container": "#edeeef", "on-primary-fixed-variant": "#763400", outline: "#8a7266", "inverse-surface": "#2e3132", "surface-container-low": "#f3f4f5", primary: "#974400", "primary-fixed": "#ffdbc9", "secondary-fixed-dim": "#ffb77d", "inverse-primary": "#ffb68d", "surface-dim": "#d9dadb", "on-secondary-fixed-variant": "#6e3900", "on-error-container": "#93000a", "surface-container-highest": "#e1e3e4", error: "#ba1a1a", "secondary-container": "#fd8b00", "surface-container-high": "#e7e8e9", "surface-container-lowest": "#ffffff", "inverse-on-surface": "#f0f1f2", "surface-variant": "#e1e3e4", "on-primary": "#ffffff", "tertiary-fixed": "#70ff76", "on-background": "#191c1d", "on-surface-variant": "#564338", "primary-container": "#bb5808"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {"stack-sm": "8px", "stack-lg": "32px", "touch-target-min": "48px", gutter: "16px", "stack-md": "16px", "container-padding": "24px", unit: "8px"}, fontFamily: {"display-lg": ["Inter"], "body-md": ["Inter"], "body-lg": ["Inter"], "headline-md": ["Inter"], "label-lg": ["Inter"], "label-md": ["Inter"], "headline-lg": ["Inter"], headline: ["Inter"], display: ["Inter"], body: ["Inter"], label: ["Inter"]}, fontSize: {"display-lg": ["40px", {lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "600"}], "label-lg": ["14px", {lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "600"}], "label-md": ["12px", {lineHeight: "16px", fontWeight: "500"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600"}]}}}};</script>
+    <style>
+            .material-symbols-outlined {
+                font-family: 'Material Symbols Outlined';
+                font-weight: normal;
+                font-style: normal;
+                font-size: 24px;
+                line-height: 1;
+                letter-spacing: normal;
+                text-transform: none;
+                display: inline-block;
+                white-space: nowrap;
+                word-wrap: normal;
+                direction: ltr;
+                -webkit-font-feature-settings: 'liga';
+                -webkit-font-smoothing: antialiased;
+            }
+            @keyframes pulse-glow {
+                0% { box-shadow: 0 0 0 0 rgba(21, 128, 61, 0.4); opacity: 0.4; }
+                50% { box-shadow: 0 0 10px 4px rgba(21, 128, 61, 0.2); opacity: 1; }
+                100% { box-shadow: 0 0 0 0 rgba(21, 128, 61, 0); opacity: 0.4; }
+            }
+            .live-indicator {
+                animation: pulse-glow 2s infinite;
+            }
+        </style>
+    <style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style></head>
+    <body class="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased">
+    <!-- TopAppBar (From JSON) -->
+    <header class="bg-surface shadow-sm docked full-width top-0 border-b border-outline-variant z-50">
+    <div class="flex justify-between items-center px-container-padding h-touch-target-min w-full max-w-7xl mx-auto">
+    <div class="flex items-center gap-gutter">
+    <div class="text-headline-lg font-headline-lg font-bold text-primary flex items-center gap-2">
+    <span class="material-symbols-outlined" data-icon="restaurant" data-weight="fill" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+                        RestaurantOS
+                    </div>
+    </div>
+    <!-- Navigation Links for Desktop (Hidden on Mobile) -->
+    <nav class="hidden md:flex space-x-stack-lg items-center h-full">
+    <a class="text-on-surface-variant hover:text-primary transition-colors flex items-center h-full px-2" href="#">Mesero</a>
+    <!-- Active Navigation Target: "Cocina" -->
+    <a class="text-primary border-b-2 border-primary pb-1 font-bold flex items-center h-full px-2" href="#">Cocina</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors flex items-center h-full px-2" href="#">Caja</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors flex items-center h-full px-2" href="#">Inventario</a><a class="text-on-surface-variant hover:text-primary transition-colors flex items-center h-full px-2" href="#">Administrador</a>
+    </nav>
+    <div class="flex items-center gap-gutter">
+    <div class="hidden md:flex items-center gap-stack-sm text-label-md font-label-md text-on-surface-variant bg-surface-container px-3 py-1 rounded-full"><span class="w-2 h-2 rounded-full bg-green-500 live-indicator"></span>Rol: Cocinero</div>
+    <div class="flex gap-2">
+    <button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 scale-95 active:opacity-80">
+    <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+    </button>
+    <button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 scale-95 active:opacity-80">
+    <span class="material-symbols-outlined" data-icon="settings">settings</span>
+    </button>
+    </div>
+    <button class="hidden md:flex items-center gap-2 text-label-lg font-label-lg text-error hover:bg-error-container/20 px-3 py-2 rounded-lg transition-colors">
+    <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+                        Cerrar Sesión
+                    </button>
+    </div>
+    </div>
+    </header>
+    <!-- Main Content Canvas -->
+    <main class="flex-1 overflow-x-auto bg-surface-bright pb-24 md:pb-8">
+    <!-- Dashboard Header -->
+    <div class="w-full max-w-7xl mx-auto px-container-padding py-stack-lg">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-md mb-stack-lg">
+    <div>
+    <h1 class="text-display-lg font-display-lg text-on-surface">Panel de Cocina</h1>
+    <div class="text-body-md font-body-md text-on-surface-variant flex items-center gap-2 mt-2">
+    <span class="material-symbols-outlined text-[18px]" data-icon="schedule">schedule</span>
+                            Servicio Activo - 18 Órdenes en curso
+                        </div>
+    </div>
+    <div class="flex gap-stack-sm w-full md:w-auto">
+    <button class="flex-1 md:flex-none flex items-center justify-center gap-2 bg-surface-container-high text-on-surface hover:bg-surface-container-highest px-4 py-2 rounded-lg transition-colors min-h-touch-target-min font-label-lg text-label-lg">
+    <span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+                            Filtros
+                        </button>
+    </div>
+    </div>
+    <!-- Kanban Board Container -->
+    <div class="flex gap-gutter h-[calc(100vh-250px)] min-h-[600px] overflow-x-auto pb-4">
+    <!-- Column 1: Pendiente (Orange) -->
+    <div class="flex flex-col w-[350px] min-w-[350px] bg-surface-container-lowest rounded-xl border border-surface-variant shadow-sm flex-shrink-0">
+    <div class="p-4 border-b border-surface-variant flex justify-between items-center bg-secondary-container/10 rounded-t-xl">
+    <h2 class="text-headline-md font-headline-md text-secondary flex items-center gap-2">
+    <span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+                                Pendiente
+                            </h2>
+    <span class="bg-secondary text-on-secondary text-label-md font-label-md px-2 py-1 rounded-full">4</span>
+    </div>
+    <div class="p-4 flex flex-col gap-4 overflow-y-auto flex-1 bg-surface-container-low/50">
+    <!-- Order Card: High Priority / New (Pendiente) -->
+    <div class="bg-surface-container-lowest rounded-lg border-l-4 border-l-error shadow-md flex flex-col relative transform hover:-translate-y-1 transition-transform duration-200">
+    <div class="absolute -top-3 -right-3 bg-error text-on-error text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider animate-pulse shadow-sm">Nuevo</div>
+    <!-- Card Header -->
+    <div class="p-3 border-b border-surface-variant flex justify-between items-start bg-error-container/10">
+    <div>
+    <div class="text-headline-md font-headline-md font-bold text-on-surface leading-tight">Mesa 04</div>
+    <div class="text-label-md font-label-md text-on-surface-variant">ID: #ORD-8821</div>
+    </div>
+    <div class="flex flex-col items-end">
+    <div class="text-error font-label-lg font-bold flex items-center gap-1">
+    <span class="material-symbols-outlined text-[16px]" data-icon="timer">timer</span>
+                                            12:45
+                                        </div>
+    <div class="text-[10px] text-on-surface-variant mt-1">Llegada: 12:33</div>
+    </div>
+    </div>
+    <!-- Order Items -->
+    <div class="p-4 flex flex-col gap-3">
+    <div class="flex justify-between items-start border-b border-surface-variant border-dashed pb-2">
+    <div class="flex items-start gap-2">
+    <span class="text-label-lg font-label-lg font-bold bg-surface-container-high px-2 py-0.5 rounded text-on-surface">2x</span>
+    <div>
+    <div class="text-body-md font-body-md text-on-surface font-medium">Ceviche Clásico</div>
+    <div class="text-label-md font-label-md text-error italic">- Sin ají limo</div>
+    </div>
+    </div>
+    </div>
+    <div class="flex justify-between items-start border-b border-surface-variant border-dashed pb-2">
+    <div class="flex items-start gap-2">
+    <span class="text-label-lg font-label-lg font-bold bg-surface-container-high px-2 py-0.5 rounded text-on-surface">1x</span>
+    <div>
+    <div class="text-body-md font-body-md text-on-surface font-medium">Arroz con Mariscos</div>
+    </div>
+    </div>
+    </div>
+    <div class="flex justify-between items-start">
+    <div class="flex items-start gap-2">
+    <span class="text-label-lg font-label-lg font-bold bg-surface-container-high px-2 py-0.5 rounded text-on-surface">1x</span>
+    <div>
+    <div class="text-body-md font-body-md text-on-surface font-medium">Jalea Mixta Familiar</div>
+    <div class="text-label-md font-label-md text-on-surface-variant italic">- Salsa tártara extra</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Card Actions -->
+    <div class="p-3 bg-surface-container-low border-t border-surface-variant mt-auto rounded-b-lg">
+    <button class="w-full bg-secondary text-on-secondary font-label-lg text-label-lg py-2 rounded flex items-center justify-center gap-2 hover:bg-secondary/90 transition-colors min-h-[40px]">
+    <span class="material-symbols-outlined text-[18px]" data-icon="play_arrow">play_arrow</span>
+                                        Empezar Preparación
+                                    </button>
+    </div>
+    </div>
+    <!-- Order Card: Normal Priority (Pendiente) -->
+    <div class="bg-surface-container-lowest rounded-lg border-l-4 border-l-secondary shadow-sm flex flex-col hover:shadow-md transition-shadow">
+    <!-- Card Header -->
+    <div class="p-3 border-b border-surface-variant flex justify-between items-start">
+    <div>
+    <div class="text-headline-md font-headline-md font-bold text-on-surface leading-tight">Mesa 12</div>
+    <div class="text-label-md font-label-md text-on-surface-variant">ID: #ORD-8823</div>
+    </div>
+    <div class="flex flex-col items-end">
+    <div class="text-on-surface-variant font-label-lg flex items-center gap-1">
+    <span class="material-symbols-outlined text-[16px]" data-icon="timer">timer</span>
+                                            05:12
+                                        </div>
+    <div class="text-[10px] text-on-surface-variant mt-1">Llegada: 12:40</div>
+    </div>
+    </div>
+    <!-- Order Items -->
+    <div class="p-4 flex flex-col gap-3">
+    <div class="flex justify-between items-start border-b border-surface-variant border-dashed pb-2">
+    <div class="flex items-start gap-2">
+    <span class="text-label-lg font-label-lg font-bold bg-surface-container-high px-2 py-0.5 rounded text-on-surface">3x</span>
+    <div>
+    <div class="text-body-md font-body-md text-on-surface font-medium">Tiradito Bicolor</div>
+    </div>
+    </div>
+    </div>
+    <div class="flex justify-between items-start">
+    <div class="flex items-start gap-2">
+    <span class="text-label-lg font-label-lg font-bold bg-surface-container-high px-2 py-0.5 rounded text-on-surface">2x</span>
+    <div>
+    <div class="text-body-md font-body-md text-on-surface font-medium">Chicharrón de Calamar</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Card Actions -->
+    <div class="p-3 bg-surface-container-low border-t border-surface-variant mt-auto rounded-b-lg">
+    <button class="w-full bg-secondary text-on-secondary font-label-lg text-label-lg py-2 rounded flex items-center justify-center gap-2 hover:bg-secondary/90 transition-colors min-h-[40px]">
+    <span class="material-symbols-outlined text-[18px]" data-icon="play_arrow">play_arrow</span>
+                                        Empezar Preparación
+                                    </button>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Column 2: En Proceso (Blue) -->
+    <div class="flex flex-col w-[350px] min-w-[350px] bg-surface-container-lowest rounded-xl border border-surface-variant shadow-sm flex-shrink-0">
+    <div class="p-4 border-b border-surface-variant flex justify-between items-center bg-tertiary-container/10 rounded-t-xl">
+    <h2 class="text-headline-md font-headline-md text-tertiary flex items-center gap-2">
+    <span class="material-symbols-outlined" data-icon="skillet" style="font-variation-settings: 'FILL' 1;">skillet</span>
+                                En Proceso
+                            </h2>
+    <span class="bg-tertiary text-on-tertiary text-label-md font-label-md px-2 py-1 rounded-full">3</span>
+    </div>
+    <div class="p-4 flex flex-col gap-4 overflow-y-auto flex-1 bg-surface-container-low/50">
+    <!-- Order Card: In Progress -->
+    <div class="bg-surface-container-lowest rounded-lg border-l-4 border-l-tertiary shadow-md flex flex-col">
+    <!-- Card Header -->
+    <div class="p-3 border-b border-surface-variant flex justify-between items-start bg-tertiary-container/5">
+    <div>
+    <div class="text-headline-md font-headline-md font-bold text-on-surface leading-tight">Mesa 02</div>
+    <div class="text-label-md font-label-md text-on-surface-variant">ID: #ORD-8815</div>
+    </div>
+    <div class="flex flex-col items-end">
+    <div class="text-tertiary font-label-lg font-bold flex items-center gap-1 animate-pulse">
+    <span class="material-symbols-outlined text-[16px]" data-icon="hourglass_top">hourglass_top</span>
+                                            18:30
+                                        </div>
+    <div class="text-[10px] text-on-surface-variant mt-1">Llegada: 12:26</div>
+    </div>
+    </div>
+    <!-- Order Items -->
+    <div class="p-4 flex flex-col gap-3 opacity-90">
+    <div class="flex justify-between items-start border-b border-surface-variant border-dashed pb-2">
+    <div class="flex items-start gap-2">
+    <span class="text-label-lg font-label-lg font-bold bg-surface-container-high px-2 py-0.5 rounded text-on-surface">1x</span>
+    <div>
+    <div class="text-body-md font-body-md text-on-surface font-medium line-through text-on-surface-variant">Ceviche Mixto</div>
+    </div>
+    </div>
+    <span class="material-symbols-outlined text-green-600 text-[18px]" data-icon="check_circle">check_circle</span>
+    </div>
+    <div class="flex justify-between items-start border-b border-surface-variant border-dashed pb-2">
+    <div class="flex items-start gap-2">
+    <span class="text-label-lg font-label-lg font-bold bg-surface-container-high px-2 py-0.5 rounded text-on-surface">2x</span>
+    <div>
+    <div class="text-body-md font-body-md text-on-surface font-medium">Sudado de Pescado</div>
+    </div>
+    </div>
+    <span class="material-symbols-outlined text-tertiary text-[18px] animate-spin" data-icon="progress_activity">progress_activity</span>
+    </div>
+    </div>
+    <!-- Card Actions -->
+    <div class="p-3 bg-surface-container-low border-t border-surface-variant mt-auto rounded-b-lg">
+    <button class="w-full bg-[#15803d] text-white font-label-lg text-label-lg py-2 rounded flex items-center justify-center gap-2 hover:bg-[#166534] transition-colors min-h-[40px]">
+    <span class="material-symbols-outlined text-[18px]" data-icon="done_all">done_all</span>
+                                        Marcar como Listo
+                                    </button>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Column 3: Listo (Green) -->
+    <div class="flex flex-col w-[350px] min-w-[350px] bg-surface-container-lowest rounded-xl border border-surface-variant shadow-sm flex-shrink-0 opacity-80">
+    <div class="p-4 border-b border-surface-variant flex justify-between items-center bg-[#f0fdf4] rounded-t-xl">
+    <h2 class="text-headline-md font-headline-md text-[#15803d] flex items-center gap-2">
+    <span class="material-symbols-outlined" data-icon="room_service" style="font-variation-settings: 'FILL' 1;">room_service</span>
+                                Listo
+                            </h2>
+    <span class="bg-[#15803d] text-white text-label-md font-label-md px-2 py-1 rounded-full">2</span>
+    </div>
+    <div class="p-4 flex flex-col gap-4 overflow-y-auto flex-1 bg-surface-container-low/30">
+    <!-- Order Card: Ready -->
+    <div class="bg-surface-container-lowest rounded-lg border-l-4 border-l-[#15803d] shadow-sm flex flex-col">
+    <!-- Card Header -->
+    <div class="p-3 border-b border-surface-variant flex justify-between items-start bg-[#f0fdf4]">
+    <div>
+    <div class="text-headline-md font-headline-md font-bold text-on-surface leading-tight">Mesa 08</div>
+    <div class="text-label-md font-label-md text-on-surface-variant">ID: #ORD-8809</div>
+    </div>
+    <div class="flex flex-col items-end">
+    <div class="text-[#15803d] font-label-lg font-bold flex items-center gap-1">
+    <span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
+                                            Completado
+                                        </div>
+    <div class="text-[10px] text-on-surface-variant mt-1">Hace 2 min</div>
+    </div>
+    </div>
+    <!-- Order Items (Collapsed/Simplified for Ready state) -->
+    <div class="p-4 flex flex-col gap-2">
+    <div class="text-body-md font-body-md text-on-surface-variant italic">
+                                        3 items (Causa, Parihuela...)
+                                    </div>
+    </div>
+    <!-- Card Actions -->
+    <div class="p-3 bg-surface-container-low border-t border-surface-variant mt-auto rounded-b-lg flex gap-2">
+    <button class="flex-1 bg-surface-container-high text-on-surface-variant font-label-md py-2 rounded hover:bg-surface-container-highest transition-colors flex items-center justify-center gap-1">
+    <span class="material-symbols-outlined text-[16px]" data-icon="notifications_active">notifications_active</span>
+                                        Llamar Mesero
+                                    </button>
+    <button class="flex-1 border border-outline text-on-surface font-label-md py-2 rounded hover:bg-surface-container transition-colors">
+                                        Despachado
+                                    </button>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </main>
+    <!-- BottomNavBar (Mobile Only) (From JSON) -->
+    <nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] bg-surface-container-highest">
+    <div class="flex justify-around items-center px-4 py-2 h-touch-target-min">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container active:scale-90 transition-transform rounded-xl" href="#">
+    <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+    <span class="font-label-md text-[10px] mt-1">Mesas</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container active:scale-90 transition-transform rounded-xl" href="#">
+    <span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+    <span class="font-label-md text-[10px] mt-1">Pedidos</span>
+    </a>
+    <!-- Active State -->
+    <a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl p-2 active:scale-90 transition-transform px-4" href="#">
+    <span class="material-symbols-outlined" data-icon="outdoor_grill" style="font-variation-settings: 'FILL' 1;">outdoor_grill</span>
+    <span class="font-label-md text-[10px] mt-1 font-bold">Cocina</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container active:scale-90 transition-transform rounded-xl" href="#">
+    <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+    <span class="font-label-md text-[10px] mt-1">Perfil</span>
+    </a>
+    </div>
+    </nav>
+    
+    
+    </body></html>
